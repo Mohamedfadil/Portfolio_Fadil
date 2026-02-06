@@ -240,8 +240,8 @@ void main(){gl_Position=position;}`;
 
     gl.uniform2f(program.resolution!, this.canvas.width, this.canvas.height);
     gl.uniform1f(program.time!, now * 1e-3);
-    gl.uniform2f(program.move!, ...this.mouseMove);
-    gl.uniform2f(program.touch!, ...this.mouseCoords);
+    gl.uniform2f(program.move!, this.mouseMove[0], this.mouseMove[1]);
+    gl.uniform2f(program.touch!, this.mouseCoords[0], this.mouseCoords[1]);
     gl.uniform1i(program.pointerCount!, this.nbrOfPointers);
     gl.uniform2fv(program.pointers!, this.pointerCoords);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
