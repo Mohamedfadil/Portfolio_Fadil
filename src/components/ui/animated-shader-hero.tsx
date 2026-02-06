@@ -14,6 +14,7 @@ type HeroProps = {
     line1: string;
     line2: string;
   };
+  headlineHref?: string;
   subtitle: string;
   primaryAction?: {
     label: string;
@@ -382,6 +383,7 @@ const useShaderBackground = () => {
 const AnimatedShaderHero = ({
   badge,
   headline,
+  headlineHref,
   subtitle,
   primaryAction,
   secondaryAction,
@@ -423,12 +425,32 @@ const AnimatedShaderHero = ({
         )}
 
         <div className="space-y-4">
-          <h1 className="hero-fade-in-up hero-delay-200 text-4xl font-semibold sm:text-6xl lg:text-7xl">
-            <span className="hero-gradient block">{headline.line1}</span>
-          </h1>
-          <h1 className="hero-fade-in-up hero-delay-400 text-3xl font-semibold sm:text-5xl lg:text-6xl">
-            <span className="hero-gradient-alt block">{headline.line2}</span>
-          </h1>
+          {headlineHref ? (
+            <a
+              href={headlineHref}
+              className="group inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <h1 className="hero-fade-in-up hero-delay-200 text-4xl font-semibold sm:text-6xl lg:text-7xl">
+                <span className="hero-gradient block group-hover:opacity-90">
+                  {headline.line1}
+                </span>
+              </h1>
+              <h1 className="hero-fade-in-up hero-delay-400 text-3xl font-semibold sm:text-5xl lg:text-6xl">
+                <span className="hero-gradient-alt block group-hover:opacity-90">
+                  {headline.line2}
+                </span>
+              </h1>
+            </a>
+          ) : (
+            <>
+              <h1 className="hero-fade-in-up hero-delay-200 text-4xl font-semibold sm:text-6xl lg:text-7xl">
+                <span className="hero-gradient block">{headline.line1}</span>
+              </h1>
+              <h1 className="hero-fade-in-up hero-delay-400 text-3xl font-semibold sm:text-5xl lg:text-6xl">
+                <span className="hero-gradient-alt block">{headline.line2}</span>
+              </h1>
+            </>
+          )}
         </div>
 
         <p className="hero-fade-in-up hero-delay-600 mt-6 max-w-3xl text-base text-white/75 sm:text-lg">

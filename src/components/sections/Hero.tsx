@@ -18,6 +18,7 @@ export default function Hero() {
           line1: organization.name,
           line2: organization.tagline,
         }}
+        headlineHref="/services"
         subtitle={heroSubtitle}
         primaryAction={{ label: cta.primaryLabel, href: cta.primaryHref }}
         secondaryAction={{ label: cta.secondaryLabel, href: cta.secondaryHref }}
