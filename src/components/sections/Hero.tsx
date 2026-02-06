@@ -9,19 +9,20 @@ export default function Hero() {
   const focusPhrases = portfolio.competencies?.shortFormat
     ? portfolio.competencies.shortFormat.split(" | ")
     : [];
+  const heroSubtitle = `${organization.mission} ${organization.subtext}`;
 
   return (
     <Section id="hero" fullWidth noPadding>
       <AnimatedShaderHero
         badge={{
-          text: organization.name,
+          text: profile.name,
           icons: ["*", "*", "*"],
         }}
         headline={{
-          line1: profile.name,
-          line2: profile.title,
+          line1: organization.name,
+          line2: organization.tagline,
         }}
-        subtitle={profile.headline}
+        subtitle={heroSubtitle}
         primaryAction={{ label: cta.primaryLabel, href: cta.primaryHref }}
         secondaryAction={{ label: cta.secondaryLabel, href: cta.secondaryHref }}
       >

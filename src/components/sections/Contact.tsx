@@ -102,9 +102,15 @@ export default function Contact() {
             >
               <a href={mailHref}>Open in Mail</a>
             </Button>
-            <span className="text-xs text-muted-foreground">
-              Or email directly at {profile.email}
-            </span>
+          </div>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+            <span>Or email directly at {profile.email}</span>
+            <a
+              href={`tel:${profile.phone?.replace(/\s/g, "")}`}
+              className="transition hover:text-primary"
+            >
+              Call {profile.phone}
+            </a>
           </div>
         </form>
       </div>

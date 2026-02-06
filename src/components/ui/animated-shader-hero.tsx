@@ -393,7 +393,7 @@ const AnimatedShaderHero = ({
   return (
     <section
       className={cn(
-        "relative flex min-h-[90vh] w-full items-center justify-center overflow-hidden rounded-b-[48px] bg-black text-white",
+        "relative flex min-h-[90vh] w-full items-center justify-center overflow-hidden bg-black text-white",
         className,
       )}
     >

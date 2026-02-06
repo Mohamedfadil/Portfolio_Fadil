@@ -41,6 +41,12 @@ export default function Footer() {
           >
             Email
           </a>
+          <a
+            href={`tel:${profile.phone?.replace(/\s/g, "")}`}
+            className="transition hover:text-primary"
+          >
+            Phone
+          </a>
         </div>
       </div>
       <p className="mt-8 text-center text-xs text-muted-foreground">
