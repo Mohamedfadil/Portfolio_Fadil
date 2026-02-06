@@ -1,0 +1,173 @@
+{
+  "profile": {
+    "name": "Mohamed Fadil",
+    "title": "Engineering the Next Wave of Autonomous AI Products",
+    "headline": "Agent-first architectures, multimodal intelligence, and cloud-scale AI delivery - built for real-world adoption.",
+    "location": "Coimbatore, India",
+    "email": "intelechoai@gmail.com",
+    "phone": "+91 73958 92648",
+    "availability": "Open to AI & data consulting engagements."
+  },
+  "organization": {
+    "name": "IntelechoAI",
+    "tagline": "Intelligence that Resonates.",
+    "mission": "We build agent-powered products, data platforms, and AI operating models that help teams move from experiments to production.",
+    "subtext": "Strategy, architecture, and delivery for organizations ready to scale intelligent systems.",
+    "splineSceneUrl": "https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"
+  },
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/mohamed-fadil-888453277",
+    "github": "https://github.com/Mohamedfadil",
+    "x": "https://x.com/SubtlySinful69"
+  },
+  "cta": {
+    "primaryLabel": "View Services",
+    "primaryHref": "/services",
+    "secondaryLabel": "View Work",
+    "secondaryHref": "#projects"
+  },
+  "services": {
+    "current": [
+      {
+        "title": "AI Strategy & Consulting",
+        "description": "Roadmaps, capability assessments, and AI adoption plans tailored to your business goals."
+      },
+      {
+        "title": "Data Engineering & Pipelines",
+        "description": "Reliable data ingestion, modeling, and analytics foundations for AI and BI."
+      },
+      {
+        "title": "AI/ML Development & MLOps",
+        "description": "Model development, deployment pipelines, monitoring, and lifecycle management."
+      },
+      {
+        "title": "Cognitive Services & AI Apps",
+        "description": "Full-stack AI applications with RAG, chat, and multimodal capabilities."
+      },
+      {
+        "title": "Agentic Coding & Development",
+        "description": "Agent orchestration, tool calling, and autonomous workflows for enterprise tasks."
+      },
+      {
+        "title": "AI-Powered Content Workflows",
+        "description": "Automated content pipelines, research acceleration, and knowledge ops."
+      },
+      {
+        "title": "Cloud Infrastructure (AWS, Azure, GCP)",
+        "description": "Secure, scalable cloud architecture and cost-optimized deployments."
+      },
+      {
+        "title": "Local LLM Integrations",
+        "description": "Private, on-prem, or edge deployments of optimized LLM stacks."
+      }
+    ],
+    "future": [
+      "Multimodal AI",
+      "Edge AI",
+      "World Models & Global Agents",
+      "AITrism (AI Risk & Governance)",
+      "Quantum AI Prototyping",
+      "AI-Native Software Engineering"
+    ]
+  },
+  "pricing": [
+    {
+      "tier": "Starter",
+      "summary": "Focused strategy sprint to align vision, scope, and feasibility.",
+      "features": [
+        "Discovery workshop",
+        "Feasibility & ROI analysis",
+        "Execution roadmap"
+      ]
+    },
+    {
+      "tier": "Growth",
+      "summary": "Hands-on build partnership to ship AI products or data platforms.",
+      "features": [
+        "MVP delivery",
+        "Agent & data architecture",
+        "Operational readiness"
+      ]
+    },
+    {
+      "tier": "Enterprise",
+      "summary": "Long-term partner engagement with strategic and delivery leadership.",
+      "features": [
+        "Quarterly roadmap",
+        "Platform evolution",
+        "Team enablement"
+      ]
+    }
+  ],
+  "competencies": {
+    "title": "Core Competencies",
+    "subtitle": "What you should showcase",
+    "pillars": [
+      {
+        "title": "Agentic AI & Multi-Agent Systems",
+        "items": [
+          "Autonomous task orchestration using LangGraph, Semantic Kernel, CrewAI, Agentcore/Strands",
+          "Agent-to-agent collaboration patterns and enterprise workflows"
+        ]
+      },
+      {
+        "title": "Generative AI Product Engineering",
+        "items": [
+          "Real-time AI applications with streaming UX",
+          "Prompt systems, guardrails, evaluation, and production tuning"
+        ]
+      },
+      {
+        "title": "Retrieval-Augmented Generation (RAG)",
+        "items": [
+          "Knowledge-base grounded assistants using Bedrock KBs, S3 document stores",
+          "Hybrid structured + unstructured retrieval for accuracy and cost control"
+        ]
+      },
+      {
+        "title": "Cloud-Native AI Platforms (AWS + Azure + GCP Ready)",
+        "items": [
+          "Scalable deployments using Lambda, Step Functions, API Gateway, Docker, CI/CD",
+          "Secure AI infrastructure with IAM, Cognito, monitoring, parameter stores"
+        ]
+      },
+      {
+        "title": "Data Engineering for AI Readiness",
+        "items": [
+          "Data pipelines across Redshift, PostgreSQL, DynamoDB",
+          "Schema design, transformation workflows, analytics integration"
+        ]
+      },
+      {
+        "title": "AI Automation & Intelligent Document Systems",
+        "items": [
+          "OCR + multimodal ingestion pipelines",
+          "Semantic indexing for finance, tax, enterprise document intelligence"
+        ]
+      },
+      {
+        "title": "Full Stack AI Delivery",
+        "items": [
+          "Next.js + Angular frontends for AI apps",
+          "Backend runtimes with FastAPI, .NET Core, Node.js"
+        ]
+      }
+    ],
+    "shortFormat": "Agentic AI Systems | Generative Product Engineering | RAG Platforms | Cloud AI Infrastructure | Data Engineering | Enterprise Automation",
+    "impactFocus": "Autonomous Agents | AI Knowledge Platforms | Intelligent Document Pipelines | Scalable Cloud Deployments | AI-First Product Delivery"
+  },
+  "team": {
+    "title": "IntelechoAI Team",
+    "subtitle": "A multidisciplinary delivery team combining engineering, product, and hardware expertise.",
+    "roles": [
+      "Developers",
+      "Innovators",
+      "DevOps",
+      "AI/ML Engineers",
+      "PO's",
+      "BA's",
+      "Hardware Engineers",
+      "Chip Designers"
+    ]
+  }
+}

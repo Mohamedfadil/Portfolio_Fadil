@@ -1,0 +1,189 @@
+{
+  "name": "Mohamed Fadil",
+  "email": "sfadilcs@gmail.com",
+  "phone": "+91 73958 92648",
+  "linkedin": "in/mohamed-fadil-888453277",
+  "summary": "AI Full Stack Developer with 3+ years of experience specializing in web development (.NET, Angular, Node.js, MongoDB), cloud computing (AWS,Azure), AI/ML and Generative AI Agentic Applications. Proven track record in delivering high-complexity projects, innovative solutions, and awarded and appreciated multiple times for technical excellence and innovation. Actively engaged in AI trends, conducting extensive research and practical PoCs in Generative AI, prompt engineering, and agent-based AI.",
+  "coreCompetencies": [
+    "Generative AI",
+    "RAG",
+    "NLP",
+    "Prompt Engineering",
+    "Agentic AI",
+    "Bedrock",
+    "Kendra",
+    "Azure AI services",
+    "Cloud Solutions",
+    "Angular"
+  ],
+  "skills": [
+    "Generative AI",
+    "RAG",
+    "NLP",
+    "Prompt Engineering",
+    "Agentic AI",
+    "Bedrock",
+    "Kendra",
+    "Azure AI services",
+    "Cloud Solutions",
+    "Angular",
+    "HTML",
+    "CSS",
+    "Python",
+    "TypeScript",
+    "MongoDB",
+    "PostgreSQL",
+    "DynamoDB",
+    "ELK",
+    "SQL",
+    "Fast API",
+    ".Net Core",
+    "Nodejs",
+    "AWS Lambda functions",
+    "AWS Bedrock",
+    "Agentcore Runtime",
+    "Strands",
+    "Crew AI",
+    "Agno",
+    "Vibe coding (Cursor / Replit)"
+  ],
+  "experience": [
+    {
+      "role": "Senior AI Engineer",
+      "company": "Whiteblue Cloud Solutions",
+      "dates": "December 2025 - Present",
+      "highlights": [
+        "Leading the AI sector for the organization, driving Microsoft Agent Framework adoption and delivery standards.",
+        "Built Insureliv AI, an agentic application delivering end-to-end insurance workflows for the GCC region.",
+        "Delivered the A module end-to-end, from architecture and .NET 10 implementation through Azure App Service hosting.",
+        "Integrated Azure AI services including Foundry, Cosmos DB, embeddings, GPT models, and Document Intelligence.",
+        "Collaborating with a small team on the LendingAI service alongside ongoing client initiatives."
+      ]
+    },
+    {
+      "role": "Software  Engineer",
+      "company": "Orion Innovation Pvt ltd",
+      "dates": "February 2023 - November 2025",
+      "highlights": [
+        "Served as a Key Software Engineer, leading multiple AI & GenAI projects including RFP AI, FinTax Assistant, AskHolley, and Minicircuits.",
+        "Drove AI innovation through hackathons, PoCs, client demos, and technology explorations, accelerating team adoption of cutting-edge approaches.",
+        "Designed and delivered end-to-end GenAI solutions such as real-time streaming chatbots, RAG-based assistants, financial/tax intelligence systems, and multi-agent orchestration frameworks.",
+        "Built enterprise-ready applications across diverse stacks \u2014 Next.js + Azure (RFP AI), AWS Bedrock with automation parsers (FinTax), Agentcore/Strands multi-agent systems (Minicircuits), and hybrid RAG + LLM setups (AskHolley).",
+        "Owned architecture & deployment strategies, orchestrating secure, scalable systems with cloud-native services (AWS & Azure) for hosting, storage, authentication, monitoring, and CI/CD.",
+        "Advanced next-gen AI adoption by pioneering PoCs with LangGraph, Semantic Kernel, Microsoft Agentic AI, CrewAI, and AWS Agentic Environment, while mentoring teams on architecture, best practices, and operational readiness."
+      ]
+    },
+    {
+      "role": "Trainee / Junior Software Engineer",
+      "company": "DucenIT Pvt Ltd",
+      "dates": "October 2022 - February 2023",
+      "highlights": [
+        "Progressed from Junior Developer to key contributor, delivering core features for the Analance BI platform using Angular and .NET Core.",
+        "Built and optimized database connectors (SQL, Elastic, Azure Blob, PostgreSQL, MongoDB) to support diverse enterprise data sources.",
+        "Implemented rich analytics dashboards with OLAP, bar, pie, and advanced custom visualizations, along with multi-format export workflows (Excel, PDF, PPTX, PNG, JPEG).",
+        "Contributed to predictive analytics, integrating ML algorithms into the Analytics module for advanced reporting and insights.",
+        "Developed the Ask Analance (NL2SQL) module, enabling natural-language-to-SQL query conversion for dynamic visualization and reporting.",
+        "Enhanced deployment reliability and quality by containerizing services, managing migrations and CI/CD with GitLab & Jenkins, and remediating vulnerabilities via SonarQube."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Ask Holley",
+      "company": "Orion Innovation",
+      "dates": "August 2024 - April 2025",
+      "highlights": [
+        "Built real-time AI search & response pipelines: Integrated Perplexity AI for web-search, engineered chunk-wise dual streaming with Bedrock, and applied custom prompt-tuning strategies to boost answer accuracy and consistency.",
+        "Developed scalable backend runtime: Designed and deployed FastAPI-based generative response runtime with Bedrock streaming; containerized and orchestrated deployments via Docker, ECR, SAM, and CloudFormation for production readiness.",
+        "Implemented RAG & contextual AI flows: Connected Bedrock KBs to PDF search for retrieval-augmented generation, built context-aware conversation systems for multi-turn state handling, and created guardrails for safe, compliant outputs.",
+        "Orchestrated serverless & data integrations: Automated flows using Lambda, Step Functions, and API Gateway; implemented structured query workflows for PostgreSQL to optimize token usage and reduce model costs.",
+        "Strengthened security & observability: Managed IAM role-based access, AWS Cognito & Amplify authentication, Parameter Store for secrets, SES/SNS for notifications, and centralized monitoring with CloudWatch.",
+        "Delivered end-to-end application layer: Built Angular frontend (chatbot UI, login, admin console, history), integrated .NET Web API Lambda for DynamoDB persistence, and managed S3/CloudFront for asset distribution."
+      ]
+    },
+    {
+      "title": "Minicircuit",
+      "company": "Orion Innovation",
+      "dates": "April 2025 - Present",
+      "highlights": [
+        "Led the GenAI team for the Minicircuits project, owning technical roadmap and delivery.",
+        "Designed and implemented backend multi-agent logic using Agentcore runtime and Strands framework, consuming and orchestrating strand logics into product workflows.",
+        "Built containerized backend services (ECR) and Node.js AWS Lambda integrations to enable low-latency streaming to the UI.",
+        "Implemented Bedrock-based RAG with structured and unstructured knowledge bases; handled KB configuration tuning, prompt management, and guardrails for production reliability.",
+        "Integrated AWS stack for data and observability: Redshift for product data, S3 for PDF storage used in RAG, Parameter Store for secure keys/config, and CloudWatch for monitoring and alerts.",
+        "Designed and executed deployment strategy and CI/CD for the multi-agent platform; provided architecture guidance and operational support to the team."
+      ]
+    },
+    {
+      "title": "FinTax Assistant",
+      "company": "Orion Innovation",
+      "dates": "June 2025 - July 2025",
+      "highlights": [
+        "Developed FinTax Assistant using AWS services and Bedrock automation parsers to extract complex graph-structured data from finance and tax documents.",
+        "Implemented document and image ingestion pipelines (PDFs, scanned images), OCR/image-data retrieval, and semantic indexing for multimodal search.",
+        "Connected KBs and Bedrock inference pipelines via RAG to provide accurate, context-rich answers for tax/finance queries.",
+        "Built retrieval and query APIs to support complex graph queries, image-data lookups."
+      ]
+    },
+    {
+      "title": "RFP AI",
+      "company": "Orion Innovation",
+      "dates": "April 2025 - May 2025",
+      "highlights": [
+        "Built RFP AI, an AI-powered application with a Next.js frontend and Azure backend, leveraging the Agno agentic framework for orchestration.",
+        "Designed and implemented two primary flows: Proposal Document Creation (automated generation from inputs and templates) and Proposal Document Ranking (AI-driven scoring and ranking of proposals).",
+        "Created prompt templates and performed prompt tuning to improve generation quality and consistency across creation and ranking flows.",
+        "Developed the document generation pipeline to assemble sections, apply templates, and export final proposals (PDF/Doc) with storage on Azure.",
+        "Built the ranking pipeline with automated evaluation criteria, AI-based scoring, and review workflows to prioritize high-quality proposals.",
+        "Exposed backend APIs and scalable Azure services for real-time generation and ranking, and implemented deployment."
+      ]
+    },
+    {
+      "title": "MAF \u2013 Multi-Agent Framework",
+      "company": "Orion Innovation",
+      "dates": "June 2025 - August 2025",
+      "highlights": [
+        "Explored and evaluated multiple agentic frameworks including LangGraph, ADK, Semantic Kernel, AWS Agentic Environment, and CrewAI for enterprise use cases.",
+        "Implemented A2A (Agent-to-Agent) communication patterns to enable collaboration, task delegation, and multi-step reasoning across agents.",
+        "Designed and developed custom agents tailored to specific business workflows, integrating reasoning, memory, and orchestration.",
+        "Conducted proof-of-concept experiments to benchmark frameworks, assess scalability, and identify best-fit architectures for production-ready multi-agent systems."
+      ]
+    },
+    {
+      "title": "Analance  \u2013 BI  and reporting application",
+      "company": "DucenIT",
+      "dates": "October 2022 - February 2023",
+      "highlights": [
+        "Developed full-stack features for a BI platform using Angular, .NET Core, and MongoDB, delivering user-facing analytics and data management capabilities.",
+        "Implemented advanced reporting workflows with interactive visualizations, PDF/Excel export, and database connectors to streamline insights.",
+        "Led deployments and CI/CD automation, containerizing services and managing migrations using GitLab, Jenkins, and Docker for reliable releases.",
+        "Enhanced platform quality and security by addressing vulnerabilities and improving code standards through SonarQube-driven remediation.",
+        "Contributed to analytics modules in collaboration with data science teams, integrating predictive algorithms and data-driven features.",
+        "Designed and implemented AskAnalance, enabling natural-language-to-SQL conversion via REST APIs, Angular UI, .NET Core, and Semantic Kernel; optimized backend for large query loads to boost responsiveness."
+      ]
+    }
+  ],
+  "education": [
+    "Bachelor of Engineering in Computer Science",
+    "Sri Eshwar College of Engineering",
+    "Coimbatore, India",
+    "2019 - 2023",
+    "8.5 CGPA"
+  ],
+  "certifications": [
+    "Oracle Cloud Infrastructure Data Science professional ( 2023 - 2025 )",
+    "Oracle",
+    "2023",
+    "it requires skills like ML, Designing , building , deploying optimizing models in OCI , and consuming AI services in it"
+  ],
+  "awards": [
+    "Best Performer Award",
+    "DucenIT",
+    "Q3, 2023, Q4 2022",
+    "Awarded Best performer and Pinnacle Performer Awards in Multiple Quarters",
+    "Inspiring Innovator Award",
+    "Orion Hackathon",
+    "2024",
+    "For innovating new Technologies and successfully implementing it."
+  ]
+}
