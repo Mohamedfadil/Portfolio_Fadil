@@ -14,10 +14,6 @@ export default function Hero() {
   return (
     <Section id="hero" fullWidth noPadding>
       <AnimatedShaderHero
-        badge={{
-          text: profile.name,
-          icons: ["*", "*", "*"],
-        }}
         headline={{
           line1: organization.name,
           line2: organization.tagline,

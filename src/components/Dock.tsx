@@ -7,6 +7,18 @@ const { profile, social } = portfolio;
 
 const items = [
   {
+    label: "Phone",
+    href: `tel:${profile.phone?.replace(/\s/g, "")}`,
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 .95-.24c1.04.24 2.16.37 3.3.37a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C9.94 21 3 14.06 3 5.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.14.13 2.26.37 3.3a1 1 0 0 1-.24.95l-1.99 2.04Z"
+        />
+      </svg>
+    ),
+  },
+  {
     label: "Email",
     href: `mailto:${profile.email}`,
     icon: (

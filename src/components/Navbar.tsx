@@ -79,7 +79,7 @@ const Navbar = () => {
             scrolled ? "text-foreground" : "text-white",
           )}
         >
-          {portfolio.organization.name}
+          {portfolio.profile.name}
         </a>
         <nav className="hidden max-w-[70vw] items-center gap-5 overflow-x-auto md:flex">
           {items.map((item) => {
