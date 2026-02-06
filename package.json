@@ -19,7 +19,8 @@
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "@splinetool/runtime": "^1.12.50"
+    "@splinetool/runtime": "^1.12.50",
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

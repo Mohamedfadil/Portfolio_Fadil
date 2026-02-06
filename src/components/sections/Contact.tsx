@@ -139,6 +139,12 @@ export default function Contact() {
         >
           X
         </a>
+        <a
+          href={`tel:${profile.phone?.replace(/\s/g, "")}`}
+          className="transition hover:text-primary"
+        >
+          {profile.phone}
+        </a>
       </div>
     </Section>
   );

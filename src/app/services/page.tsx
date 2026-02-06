@@ -22,10 +22,6 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="relative min-h-screen overflow-hidden pb-32">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-noise" />
-      <div className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]" />
-      <div className="pointer-events-none absolute right-0 top-40 -z-10 h-80 w-80 rounded-full bg-indigo-400/20 blur-[140px]" />
-
       <ServicesHero />
       <Services />
       <Team />

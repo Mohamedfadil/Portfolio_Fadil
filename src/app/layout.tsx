@@ -3,6 +3,7 @@ import { JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeScript from "@/components/ThemeScript";
+import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
 import portfolio from "@/data/portfolio.json";
 import resume from "@/data/resume.json";
 
@@ -69,6 +70,7 @@ export default function RootLayout({
         className={`${sora.variable} ${jetBrains.variable} bg-background text-foreground antialiased`}
       >
         <ThemeScript />
+        <AnimatedShaderBackground className="opacity-70" />
         <Navbar />
         {children}
         <script
