@@ -10,8 +10,7 @@ A polished Next.js single-page portfolio with a dedicated services page for Inte
 - Animated hero, smooth section transitions, and scrollspy navigation
 - Dark and light theme toggle with persisted preference
 - Resume-driven content (summary, skills, experience, projects)
-- Dedicated Microsoft Agent Framework and Data Engineering showcases
-- 3D skill marquee and interactive UI components from Aceternity and 21st.dev
+- Spline-powered services hero, glowing service cards, and immersive brand intro
 - SEO metadata + OpenGraph + JSON-LD structured data
 - Responsive layout with client-focused CTAs
 
@@ -29,20 +28,15 @@ npm run dev
 Open `http://localhost:3000` for the portfolio and `http://localhost:3000/services` for the services page.
 
 ## Resume Parsing
-The site reads your resume from `resources/` and generates structured data used across the site.
+Resume data lives in `src/data/resume.json` and is used by the Journey, Experience, and Projects sections.
 
+You can update it manually or regenerate it from a resume file:
 1. Drop your resume into `resources/` as `PDF`, `DOCX`, or `TXT`.
 2. Run:
 ```bash
 python scripts/parse-resume.py
 ```
-This generates `src/data/resume.json`, copies your resume into `public/` as `resume.<ext>`, and updates `social.resume` in `src/data/portfolio.json`.
-
-3. Regenerate skill tiles for the 3D marquee:
-```bash
-python scripts/generate-skill-images.py
-```
-This updates `public/skills/` and `src/data/skills-marquee.json`.
+This updates `src/data/resume.json` and copies your resume into `public/` as `resume.<ext>`.
 
 ## Customize Content
 Main content configuration lives in `src/data/portfolio.json`.
@@ -50,8 +44,8 @@ Main content configuration lives in `src/data/portfolio.json`.
 Common edits:
 1. Update `profile` details (name, title, email, location).
 2. Update `organization` name, tagline, and Spline scene URL.
-3. Edit `agentFramework` and `dataEngineering` sections.
-4. Update `services.current`, `services.future`, and `pricing` for the services page.
+3. Update `services.current`, `services.future`, and `pricing` for the services page.
+4. Update `competencies` and `team` for the main portfolio.
 5. Replace social links in `social`.
 
 ## Key Files
@@ -71,8 +65,16 @@ npm run format
 ```
 
 ## Deployment
-- Vercel: import the repo and deploy with default Next.js settings.
-- Netlify: use `npm run build` and `npm run start` or set the Next.js build preset.
+### Vercel (Recommended)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Mohamedfadil/Portfolio_Fadil)
+
+1. Import the GitHub repo in Vercel.
+2. Framework preset: **Next.js**
+3. Build command: `npm run build`
+4. Output: default
+
+### Netlify
+Use `npm run build` and `npm run start` or set the Next.js build preset.
 
 ## Notes
 - The contact form uses `mailto:` by default. Swap in a form backend as needed.
