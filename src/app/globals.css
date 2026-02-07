@@ -372,7 +372,7 @@ code {
   }
 }
 
-.rocket-loader-container {
+.loader-container {
   position: relative;
   display: flex;
   height: 100%;
@@ -383,13 +383,13 @@ code {
   border-radius: 1rem;
 }
 
-.rocket-loader-container .clouds {
+.loader-container .clouds {
   position: absolute;
   inset: 0;
   opacity: 0.5;
 }
 
-.rocket-loader-container .cloud {
+.loader-container .cloud {
   position: absolute;
   height: 12px;
   width: 12px;
@@ -398,36 +398,36 @@ code {
   animation: moveClouds 10s linear infinite;
 }
 
-.rocket-loader-container .cloud1 {
+.loader-container .cloud1 {
   top: 15%;
   left: 40%;
 }
 
-.rocket-loader-container .cloud2 {
+.loader-container .cloud2 {
   top: 35%;
   left: 60%;
   animation-duration: 12s;
 }
 
-.rocket-loader-container .cloud3 {
+.loader-container .cloud3 {
   top: 55%;
   left: 70%;
   animation-duration: 14s;
 }
 
-.rocket-loader-container .cloud4 {
+.loader-container .cloud4 {
   top: 70%;
   left: 30%;
   animation-duration: 9s;
 }
 
-.rocket-loader-container .cloud5 {
+.loader-container .cloud5 {
   top: 25%;
   left: 80%;
   animation-duration: 11s;
 }
 
-.rocket-loader-container .loader {
+.loader-container .loader {
   position: relative;
   z-index: 2;
   width: 110px;
@@ -435,7 +435,7 @@ code {
   animation: speeder 0.35s linear infinite;
 }
 
-.rocket-loader-container .loader > span {
+.loader-container .loader > span {
   position: absolute;
   top: 0;
   left: 0;
@@ -445,7 +445,7 @@ code {
   background: linear-gradient(90deg, #67e8f9, #14b8a6);
 }
 
-.rocket-loader-container .loader > span > span {
+.loader-container .loader > span > span {
   position: absolute;
   right: -9px;
   width: 22px;
@@ -454,27 +454,27 @@ code {
   background: rgba(255, 255, 255, 0.95);
 }
 
-.rocket-loader-container .loader > span > span:nth-child(1) {
+.loader-container .loader > span > span:nth-child(1) {
   top: 2px;
   animation: fazer1 0.2s linear infinite;
 }
 
-.rocket-loader-container .loader > span > span:nth-child(2) {
+.loader-container .loader > span > span:nth-child(2) {
   top: 8px;
   animation: fazer2 0.3s linear infinite;
 }
 
-.rocket-loader-container .loader > span > span:nth-child(3) {
+.loader-container .loader > span > span:nth-child(3) {
   top: 14px;
   animation: fazer3 0.22s linear infinite;
 }
 
-.rocket-loader-container .loader > span > span:nth-child(4) {
+.loader-container .loader > span > span:nth-child(4) {
   top: 20px;
   animation: fazer4 0.28s linear infinite;
 }
 
-.rocket-loader-container .base {
+.loader-container .base {
   position: absolute;
   top: 18px;
   left: 24px;
@@ -484,7 +484,7 @@ code {
   background: #0f172a;
 }
 
-.rocket-loader-container .base > span {
+.loader-container .base > span {
   position: absolute;
   top: -8px;
   left: 8px;
@@ -494,7 +494,7 @@ code {
   background: #22d3ee;
 }
 
-.rocket-loader-container .face {
+.loader-container .face {
   position: absolute;
   top: 6px;
   right: 6px;
@@ -504,13 +504,13 @@ code {
   background: #e2e8f0;
 }
 
-.rocket-loader-container .longfazers {
+.loader-container .longfazers {
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
-.rocket-loader-container .longfazers span {
+.loader-container .longfazers span {
   position: absolute;
   top: 50%;
   left: 100%;
@@ -519,22 +519,22 @@ code {
   background: linear-gradient(90deg, rgba(34, 211, 238, 0.55), transparent);
 }
 
-.rocket-loader-container .longfazers span:nth-child(1) {
+.loader-container .longfazers span:nth-child(1) {
   top: 35%;
   animation: lf 0.6s linear infinite;
 }
 
-.rocket-loader-container .longfazers span:nth-child(2) {
+.loader-container .longfazers span:nth-child(2) {
   top: 45%;
   animation: lf2 0.8s linear infinite;
 }
 
-.rocket-loader-container .longfazers span:nth-child(3) {
+.loader-container .longfazers span:nth-child(3) {
   top: 60%;
   animation: lf3 0.7s linear infinite;
 }
 
-.rocket-loader-container .longfazers span:nth-child(4) {
+.loader-container .longfazers span:nth-child(4) {
   top: 70%;
   animation: lf4 1s linear infinite;
 }

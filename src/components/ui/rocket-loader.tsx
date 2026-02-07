@@ -2,7 +2,7 @@ import React from "react";
 
 export const Component = () => {
   return (
-    <div className="rocket-loader-container" aria-hidden="true">
+    <div className="loader-container" aria-hidden="true">
       <div className="clouds">
         <div className="cloud cloud1" />
         <div className="cloud cloud2" />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import SplineLoader from "@/components/ui/spline-loader";
 
@@ -15,11 +15,14 @@ const DynamicSplineScene = dynamic(
 export default function ServicesSpline({
   scene,
   className,
+  onLoaded,
 }: {
   scene: string;
   className?: string;
+  onLoaded?: () => void;
 }) {
   const [shouldMount, setShouldMount] = useState(false);
+  const hasNotified = useRef(false);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -28,9 +31,22 @@ export default function ServicesSpline({
     return () => window.clearTimeout(timer);
   }, []);
 
+  const notifyLoaded = () => {
+    if (hasNotified.current) return;
+    hasNotified.current = true;
+    onLoaded?.();
+    window.dispatchEvent(new Event("services-spline-loaded"));
+  };
+
   if (!shouldMount) {
     return <SplineLoader />;
   }
 
-  return <DynamicSplineScene scene={scene} className={className} />;
+  return (
+    <DynamicSplineScene
+      scene={scene}
+      className={className}
+      onLoaded={notifyLoaded}
+    />
+  );
 }

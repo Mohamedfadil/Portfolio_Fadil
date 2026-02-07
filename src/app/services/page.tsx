@@ -8,6 +8,7 @@ import {
   DeferredServices,
   DeferredTeam,
 } from "@/components/lazy/ServicesDeferred";
+import ServicesPageLoaderGate from "@/components/lazy/ServicesPageLoaderGate";
 
 export const dynamic = "force-static";
 
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="relative min-h-screen overflow-hidden pb-32">
+      <ServicesPageLoaderGate />
       <ServicesHero />
       <DeferredServices />
       <DeferredTeam />
