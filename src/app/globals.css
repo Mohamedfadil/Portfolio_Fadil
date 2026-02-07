@@ -104,6 +104,13 @@ code {
     opacity: 1 !important;
     transform: none !important;
   }
+
+  .hero-gradient,
+  .hero-gradient-alt,
+  .loader,
+  .animate-pulse {
+    animation: none !important;
+  }
 }
 
 .section-pad {

@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ThemeScript from "@/components/ThemeScript";
-import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
+import AmbientBackground from "@/components/ui/ambient-background";
 import portfolio from "@/data/portfolio.json";
 import resume from "@/data/resume.json";
 
@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     title: `${portfolio.profile.name} | ${portfolio.profile.title}`,
     description: resume.summary,
   },
+};
+
+export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f7f5f1" },
     { media: "(prefers-color-scheme: dark)", color: "#070707" },
@@ -70,7 +73,7 @@ export default function RootLayout({
         className={`${sora.variable} ${jetBrains.variable} bg-background text-foreground antialiased`}
       >
         <ThemeScript />
-        <AnimatedShaderBackground className="opacity-70" />
+        <AmbientBackground />
         <Navbar />
         {children}
         <script

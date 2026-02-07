@@ -327,7 +327,9 @@ const useShaderBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !canvas.getContext("webgl2")) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileViewport = window.matchMedia("(max-width: 768px)");
+    if (reducedMotion.matches || mobileViewport.matches) return;
 
     const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
 
@@ -346,8 +348,17 @@ const useShaderBackground = () => {
       pointersRef.current.updateScale(nextDpr);
     };
 
+    let lastFrame = 0;
+    const frameInterval = 1000 / 45;
+
     const loop = (now: number) => {
       if (!rendererRef.current || !pointersRef.current) return;
+      // Cap to ~45fps to reduce GPU pressure during scroll and input.
+      if (now - lastFrame < frameInterval) {
+        animationFrameRef.current = requestAnimationFrame(loop);
+        return;
+      }
+      lastFrame = now;
       rendererRef.current.updateMouse(pointersRef.current.first);
       rendererRef.current.updatePointerCount(pointersRef.current.count);
       rendererRef.current.updatePointerCoords(pointersRef.current.coords);

@@ -1,20 +1,20 @@
 "use client";
 
-import { Suspense, lazy } from "react";
 import { useEffect, useState } from "react";
-const Spline = lazy(() => import("@splinetool/react-spline"));
+import dynamic from "next/dynamic";
 
-interface SplineSceneProps {
-  scene: string;
-  className?: string;
-}
+const AnimatedShaderBackground = dynamic(
+  () => import("@/components/ui/animated-shader-background"),
+  { ssr: false },
+);
 
-export function SplineScene({ scene, className }: SplineSceneProps) {
+export default function AmbientBackground() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobileViewport = window.matchMedia("(max-width: 768px)");
+
     const update = () => {
       setEnabled(!(reducedMotion.matches || mobileViewport.matches));
     };
@@ -29,23 +29,8 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
   }, []);
 
   if (!enabled) {
-    return (
-      <div
-        className="h-full w-full bg-[radial-gradient(circle_at_30%_30%,rgba(20,184,166,0.25),rgba(0,0,0,0.8)_55%)]"
-        aria-hidden="true"
-      />
-    );
+    return null;
   }
 
-  return (
-    <Suspense
-      fallback={
-        <div className="w-full h-full flex items-center justify-center">
-          <span className="loader"></span>
-        </div>
-      }
-    >
-      <Spline scene={scene} className={className} />
-    </Suspense>
-  );
+  return <AnimatedShaderBackground className="opacity-70" />;
 }

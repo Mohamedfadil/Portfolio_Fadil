@@ -14,6 +14,18 @@ A polished Next.js single-page portfolio with a dedicated services page for Inte
 - SEO metadata + OpenGraph + JSON-LD structured data
 - Responsive layout with client-focused CTAs
 
+## Performance Optimizations
+- Server-first section rendering (`src/components/shared/Section.tsx`) to avoid unnecessary hydration across static content.
+- Deferred below-the-fold heavy sections using `next/dynamic` + `ssr: false` via:
+  - `src/components/lazy/HomeDeferred.tsx`
+  - `src/components/lazy/ServicesDeferred.tsx`
+- Motion gating for expensive effects (WebGL/canvas/Spline/glow) on:
+  - mobile viewports (`max-width: 768px`)
+  - `prefers-reduced-motion: reduce`
+- Throttled animation frame rates for canvas/WebGL effects to reduce scroll jank.
+- `three` is loaded lazily at runtime inside `src/components/ui/animated-shader-background.tsx` instead of static top-level import.
+- Audited image usage: no raw `<img>` tags are currently used in app UI components.
+
 ## Tech Stack
 - Next.js App Router
 - React with Hooks
@@ -63,6 +75,12 @@ npm run lint
 npm run lint:fix
 npm run format
 ```
+
+## Production Verification
+```bash
+npm run build
+```
+This repo is configured to statically prerender `/` and `/services` on successful production builds.
 
 ## Deployment
 ### Vercel (Recommended)

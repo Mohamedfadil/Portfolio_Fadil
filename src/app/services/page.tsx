@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import ServicesHero from "@/components/sections/ServicesHero";
-import Services from "@/components/sections/Services";
-import Team from "@/components/sections/Team";
-import Pricing from "@/components/sections/Pricing";
 import Footer from "@/components/sections/Footer";
 import Section from "@/components/shared/Section";
 import Link from "next/link";
+import {
+  DeferredPricing,
+  DeferredServices,
+  DeferredTeam,
+} from "@/components/lazy/ServicesDeferred";
 
 export const metadata: Metadata = {
   title: "IntelechoAI - Services We Offer",
@@ -23,9 +25,9 @@ export default function ServicesPage() {
   return (
     <main className="relative min-h-screen overflow-hidden pb-32">
       <ServicesHero />
-      <Services />
-      <Team />
-      <Pricing />
+      <DeferredServices />
+      <DeferredTeam />
+      <DeferredPricing />
 
       <Section id="services-cta">
         <div className="rounded-3xl border border-border/60 bg-surface p-8 text-center shadow-sm">

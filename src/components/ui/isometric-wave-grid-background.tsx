@@ -23,6 +23,9 @@ const IsoLevelWarp = ({
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileViewport = window.matchMedia("(max-width: 768px)");
+    if (reducedMotion.matches || mobileViewport.matches) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -42,8 +45,10 @@ const IsoLevelWarp = ({
     const resize = () => {
       width = container.offsetWidth;
       height = container.offsetHeight;
-      canvas.width = width;
-      canvas.height = height;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -61,7 +66,15 @@ const IsoLevelWarp = ({
       return a + (b - a) * t;
     };
 
-    const draw = () => {
+    let lastFrame = 0;
+    const frameInterval = 1000 / 30;
+
+    const draw = (timestamp: number) => {
+      if (timestamp - lastFrame < frameInterval) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = timestamp;
       ctx.clearRect(0, 0, width, height);
 
       mouse.x = smoothMix(mouse.x, mouse.targetX, 0.1);
@@ -118,7 +131,7 @@ const IsoLevelWarp = ({
     container.addEventListener("mouseleave", handleMouseLeave);
 
     resize();
-    draw();
+    animationFrameId = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener("resize", resize);

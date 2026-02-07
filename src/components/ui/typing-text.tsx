@@ -22,7 +22,8 @@ export default function TypingText({ phrases, className }: TypingTextProps) {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (prefersReduced) {
+    const mobileViewport = window.matchMedia("(max-width: 768px)").matches;
+    if (prefersReduced || mobileViewport) {
       setDisplayText(safePhrases[0] ?? "");
       return;
     }

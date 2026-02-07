@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
 type AnimatedShaderBackgroundProps = {
@@ -16,27 +15,39 @@ const AnimatedShaderBackground = ({
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileViewport = window.matchMedia("(max-width: 768px)");
+    if (reducedMotion.matches || mobileViewport.matches) return;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+    let frameId = 0;
+    let cancelled = false;
+    let removeResize: (() => void) | null = null;
+    let cleanupThree: (() => void) | null = null;
 
-    const material = new THREE.ShaderMaterial({
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: {
-          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+    const initialize = async () => {
+      const THREE = await import("three");
+      if (cancelled) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      container.appendChild(renderer.domElement);
+
+      const material = new THREE.ShaderMaterial({
+        uniforms: {
+          iTime: { value: 0 },
+          iResolution: {
+            value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+          },
         },
-      },
-      vertexShader: `
+        vertexShader: `
         void main() {
           gl_Position = vec4(position, 1.0);
         }
       `,
-      fragmentShader: `
+        fragmentShader: `
         uniform float iTime;
         uniform vec2 iResolution;
 
@@ -96,37 +107,57 @@ const AnimatedShaderBackground = ({
           gl_FragColor = o * 1.5;
         }
       `,
-    });
+      });
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+      const geometry = new THREE.PlaneGeometry(2, 2);
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
 
-    let frameId = 0;
-    const animate = () => {
-      material.uniforms.iTime.value += 0.016;
-      renderer.render(scene, camera);
+      let lastFrame = 0;
+      const frameInterval = 1000 / 30;
+      const animate = (timestamp: number) => {
+        if (cancelled) return;
+        if (timestamp - lastFrame >= frameInterval) {
+          lastFrame = timestamp;
+          material.uniforms.iTime.value += 0.016;
+          renderer.render(scene, camera);
+        }
+        frameId = window.requestAnimationFrame(animate);
+      };
       frameId = window.requestAnimationFrame(animate);
-    };
-    animate();
 
-    const handleResize = () => {
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      material.uniforms.iResolution.value.set(
-        window.innerWidth,
-        window.innerHeight,
-      );
+      const handleResize = () => {
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        material.uniforms.iResolution.value.set(
+          window.innerWidth,
+          window.innerHeight,
+        );
+      };
+      window.addEventListener("resize", handleResize);
+      removeResize = () => window.removeEventListener("resize", handleResize);
+
+      cleanupThree = () => {
+        if (renderer.domElement.parentNode === container) {
+          container.removeChild(renderer.domElement);
+        }
+        geometry.dispose();
+        material.dispose();
+        renderer.dispose();
+      };
     };
-    window.addEventListener("resize", handleResize);
+
+    void initialize();
 
     return () => {
+      cancelled = true;
       window.cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", handleResize);
-      container.removeChild(renderer.domElement);
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
+      if (removeResize) {
+        removeResize();
+      }
+      if (cleanupThree) {
+        cleanupThree();
+      }
     };
   }, []);
 

@@ -1,5 +1,4 @@
 import Section from "@/components/shared/Section";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import resume from "@/data/resume.json";
 
 // About / Journey section sourced from resume data.
@@ -21,10 +20,9 @@ export default function Journey() {
             Building agentic AI systems and data platforms with real-world
             impact.
           </h2>
-          <TextGenerateEffect
-            words={resume.summary}
-            className="text-muted-foreground"
-          />
+          <p className="mt-4 text-xl font-semibold leading-snug tracking-wide text-muted-foreground">
+            {resume.summary}
+          </p>
         </div>
 
         <div className="rounded-3xl border border-border/60 bg-surface p-6 shadow-sm">
