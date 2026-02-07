@@ -328,16 +328,27 @@ const useShaderBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas || !canvas.getContext("webgl2")) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileViewport = window.matchMedia("(max-width: 768px)");
-    if (reducedMotion.matches || mobileViewport.matches) return;
+    if (reducedMotion.matches) return;
 
-    const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
-
-    rendererRef.current = new WebGLRenderer(canvas, dpr, defaultShaderSource);
-    pointersRef.current = new PointerHandler(canvas, dpr);
-
-    rendererRef.current.setup();
-    rendererRef.current.init();
+    let lastFrame = 0;
+    const frameInterval = 1000 / 45;
+    let mounted = false;
+    let inViewport = true;
+    const mountTimer = window.setTimeout(() => {
+      const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
+      rendererRef.current = new WebGLRenderer(canvas, dpr, defaultShaderSource);
+      pointersRef.current = new PointerHandler(canvas, dpr);
+      rendererRef.current.setup();
+      rendererRef.current.init();
+      resize();
+      if (rendererRef.current.test(defaultShaderSource) === null) {
+        rendererRef.current.updateShader(defaultShaderSource);
+      }
+      mounted = true;
+      if (!document.hidden && inViewport) {
+        startLoop();
+      }
+    }, 700);
 
     const resize = () => {
       if (!canvasRef.current || !rendererRef.current || !pointersRef.current) return;
@@ -348,11 +359,8 @@ const useShaderBackground = () => {
       pointersRef.current.updateScale(nextDpr);
     };
 
-    let lastFrame = 0;
-    const frameInterval = 1000 / 45;
-
     const loop = (now: number) => {
-      if (!rendererRef.current || !pointersRef.current) return;
+      if (!rendererRef.current || !pointersRef.current || !mounted) return;
       // Cap to ~45fps to reduce GPU pressure during scroll and input.
       if (now - lastFrame < frameInterval) {
         animationFrameRef.current = requestAnimationFrame(loop);
@@ -367,25 +375,56 @@ const useShaderBackground = () => {
       animationFrameRef.current = requestAnimationFrame(loop);
     };
 
-    resize();
+    const startLoop = () => {
+      if (!mounted || animationFrameRef.current !== null) return;
+      animationFrameRef.current = requestAnimationFrame(loop);
+    };
 
-    if (rendererRef.current.test(defaultShaderSource) === null) {
-      rendererRef.current.updateShader(defaultShaderSource);
-    }
+    const stopLoop = () => {
+      if (animationFrameRef.current === null) return;
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    };
 
-    loop(0);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry.isIntersecting;
+        if (!inViewport) {
+          stopLoop();
+          return;
+        }
+        if (!document.hidden) {
+          startLoop();
+        }
+      },
+      { threshold: 0.05 },
+    );
 
+    observer.observe(canvas);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopLoop();
+      } else if (inViewport) {
+        startLoop();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("resize", resize);
 
     return () => {
+      window.clearTimeout(mountTimer);
+      stopLoop();
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("resize", resize);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
       if (rendererRef.current) {
         rendererRef.current.reset();
+        rendererRef.current = null;
       }
-    };
+      pointersRef.current = null;
+    }
   }, []);
 
   return canvasRef;

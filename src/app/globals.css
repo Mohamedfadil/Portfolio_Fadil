@@ -246,3 +246,295 @@ code {
 .animate-spotlight {
   animation: spotlight 2s ease 0.75s 1 forwards;
 }
+
+@keyframes fazer1 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -80px;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer2 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100px;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer3 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -50px;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer4 {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -150px;
+    opacity: 0;
+  }
+}
+
+@keyframes speeder {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -3px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-2px, 0) rotate(1deg);
+  }
+  30% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 3px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-1px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-2px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes lf {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -200%;
+    opacity: 0;
+  }
+}
+
+@keyframes lf2 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -200%;
+    opacity: 0;
+  }
+}
+
+@keyframes lf3 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes lf4 {
+  0% {
+    left: 200%;
+  }
+  100% {
+    left: -100%;
+    opacity: 0;
+  }
+}
+
+@keyframes moveClouds {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200vw);
+  }
+}
+
+.rocket-loader-container {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.rocket-loader-container .clouds {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+}
+
+.rocket-loader-container .cloud {
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.25);
+  animation: moveClouds 10s linear infinite;
+}
+
+.rocket-loader-container .cloud1 {
+  top: 15%;
+  left: 40%;
+}
+
+.rocket-loader-container .cloud2 {
+  top: 35%;
+  left: 60%;
+  animation-duration: 12s;
+}
+
+.rocket-loader-container .cloud3 {
+  top: 55%;
+  left: 70%;
+  animation-duration: 14s;
+}
+
+.rocket-loader-container .cloud4 {
+  top: 70%;
+  left: 30%;
+  animation-duration: 9s;
+}
+
+.rocket-loader-container .cloud5 {
+  top: 25%;
+  left: 80%;
+  animation-duration: 11s;
+}
+
+.rocket-loader-container .loader {
+  position: relative;
+  z-index: 2;
+  width: 110px;
+  height: 46px;
+  animation: speeder 0.35s linear infinite;
+}
+
+.rocket-loader-container .loader > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 58px;
+  height: 22px;
+  border-radius: 9999px 12px 4px 12px;
+  background: linear-gradient(90deg, #67e8f9, #14b8a6);
+}
+
+.rocket-loader-container .loader > span > span {
+  position: absolute;
+  right: -9px;
+  width: 22px;
+  height: 2px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.rocket-loader-container .loader > span > span:nth-child(1) {
+  top: 2px;
+  animation: fazer1 0.2s linear infinite;
+}
+
+.rocket-loader-container .loader > span > span:nth-child(2) {
+  top: 8px;
+  animation: fazer2 0.3s linear infinite;
+}
+
+.rocket-loader-container .loader > span > span:nth-child(3) {
+  top: 14px;
+  animation: fazer3 0.22s linear infinite;
+}
+
+.rocket-loader-container .loader > span > span:nth-child(4) {
+  top: 20px;
+  animation: fazer4 0.28s linear infinite;
+}
+
+.rocket-loader-container .base {
+  position: absolute;
+  top: 18px;
+  left: 24px;
+  width: 46px;
+  height: 20px;
+  border-radius: 0 0 10px 10px;
+  background: #0f172a;
+}
+
+.rocket-loader-container .base > span {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  width: 30px;
+  height: 10px;
+  border-radius: 8px 8px 0 0;
+  background: #22d3ee;
+}
+
+.rocket-loader-container .face {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #e2e8f0;
+}
+
+.rocket-loader-container .longfazers {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.rocket-loader-container .longfazers span {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  height: 1px;
+  width: 20%;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.55), transparent);
+}
+
+.rocket-loader-container .longfazers span:nth-child(1) {
+  top: 35%;
+  animation: lf 0.6s linear infinite;
+}
+
+.rocket-loader-container .longfazers span:nth-child(2) {
+  top: 45%;
+  animation: lf2 0.8s linear infinite;
+}
+
+.rocket-loader-container .longfazers span:nth-child(3) {
+  top: 60%;
+  animation: lf3 0.7s linear infinite;
+}
+
+.rocket-loader-container .longfazers span:nth-child(4) {
+  top: 70%;
+  animation: lf4 1s linear infinite;
+}

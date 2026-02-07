@@ -16,12 +16,13 @@ const AnimatedShaderBackground = ({
     const container = containerRef.current;
     if (!container) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileViewport = window.matchMedia("(max-width: 768px)");
-    if (reducedMotion.matches || mobileViewport.matches) return;
+    if (reducedMotion.matches) return;
 
     let frameId = 0;
     let cancelled = false;
+    let running = false;
     let removeResize: (() => void) | null = null;
+    let removeVisibility: (() => void) | null = null;
     let cleanupThree: (() => void) | null = null;
 
     const initialize = async () => {
@@ -116,7 +117,7 @@ const AnimatedShaderBackground = ({
       let lastFrame = 0;
       const frameInterval = 1000 / 30;
       const animate = (timestamp: number) => {
-        if (cancelled) return;
+        if (cancelled || !running) return;
         if (timestamp - lastFrame >= frameInterval) {
           lastFrame = timestamp;
           material.uniforms.iTime.value += 0.016;
@@ -124,7 +125,20 @@ const AnimatedShaderBackground = ({
         }
         frameId = window.requestAnimationFrame(animate);
       };
-      frameId = window.requestAnimationFrame(animate);
+
+      const startLoop = () => {
+        if (running || cancelled || document.hidden) return;
+        running = true;
+        frameId = window.requestAnimationFrame(animate);
+      };
+
+      const stopLoop = () => {
+        if (!running) return;
+        running = false;
+        window.cancelAnimationFrame(frameId);
+      };
+
+      startLoop();
 
       const handleResize = () => {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -137,7 +151,19 @@ const AnimatedShaderBackground = ({
       window.addEventListener("resize", handleResize);
       removeResize = () => window.removeEventListener("resize", handleResize);
 
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          stopLoop();
+        } else {
+          startLoop();
+        }
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+      removeVisibility = () =>
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+
       cleanupThree = () => {
+        stopLoop();
         if (renderer.domElement.parentNode === container) {
           container.removeChild(renderer.domElement);
         }
@@ -154,6 +180,9 @@ const AnimatedShaderBackground = ({
       window.cancelAnimationFrame(frameId);
       if (removeResize) {
         removeResize();
+      }
+      if (removeVisibility) {
+        removeVisibility();
       }
       if (cleanupThree) {
         cleanupThree();

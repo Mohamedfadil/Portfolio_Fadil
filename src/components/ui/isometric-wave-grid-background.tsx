@@ -24,8 +24,7 @@ const IsoLevelWarp = ({
     const container = containerRef.current;
     if (!canvas || !container) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileViewport = window.matchMedia("(max-width: 768px)");
-    if (reducedMotion.matches || mobileViewport.matches) return;
+    if (reducedMotion.matches) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -67,9 +66,12 @@ const IsoLevelWarp = ({
     };
 
     let lastFrame = 0;
+    let inViewport = false;
+    let active = false;
     const frameInterval = 1000 / 30;
 
     const draw = (timestamp: number) => {
+      if (!active) return;
       if (timestamp - lastFrame < frameInterval) {
         animationFrameId = requestAnimationFrame(draw);
         return;
@@ -126,18 +128,54 @@ const IsoLevelWarp = ({
       animationFrameId = requestAnimationFrame(draw);
     };
 
+    const startLoop = () => {
+      if (active) return;
+      active = true;
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    const stopLoop = () => {
+      if (!active) return;
+      active = false;
+      cancelAnimationFrame(animationFrameId);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        inViewport = entry.isIntersecting;
+        if (!inViewport || document.hidden) {
+          stopLoop();
+        } else {
+          startLoop();
+        }
+      },
+      { threshold: 0.05 },
+    );
+
+    observer.observe(container);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden || !inViewport) {
+        stopLoop();
+      } else {
+        startLoop();
+      }
+    };
+
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     container.addEventListener("mousemove", handleMouseMove);
     container.addEventListener("mouseleave", handleMouseLeave);
 
     resize();
-    animationFrameId = requestAnimationFrame(draw);
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       container.removeEventListener("mousemove", handleMouseMove);
       container.removeEventListener("mouseleave", handleMouseLeave);
-      cancelAnimationFrame(animationFrameId);
+      stopLoop();
     };
   }, [color, speed, density]);
 

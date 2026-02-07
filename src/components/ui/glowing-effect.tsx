@@ -3,7 +3,6 @@
 import type { CSSProperties } from "react";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { animate } from "motion/react";
 
 interface GlowingEffectProps {
   blur?: number;
@@ -37,18 +36,15 @@ const GlowingEffect = memo(
 
     useEffect(() => {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-      const mobileViewport = window.matchMedia("(max-width: 768px)");
 
       const update = () => {
-        setMotionDisabled(reducedMotion.matches || mobileViewport.matches);
+        setMotionDisabled(reducedMotion.matches);
       };
 
       update();
       reducedMotion.addEventListener("change", update);
-      mobileViewport.addEventListener("change", update);
       return () => {
         reducedMotion.removeEventListener("change", update);
-        mobileViewport.removeEventListener("change", update);
       };
     }, []);
 
@@ -104,15 +100,10 @@ const GlowingEffect = memo(
             90;
 
           const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
-          const newAngle = currentAngle + angleDiff;
 
-          animate(currentAngle, newAngle, {
-            duration: movementDuration,
-            ease: [0.16, 1, 0.3, 1],
-            onUpdate: (value) => {
-              element.style.setProperty("--start", String(value));
-            },
-          });
+          const smoothing = Math.max(0.1, Math.min(movementDuration, 3));
+          const easedAngle = currentAngle + angleDiff / (1 + 3 / smoothing);
+          element.style.setProperty("--start", String(easedAngle));
         });
       },
       [inactiveZone, proximity, movementDuration],

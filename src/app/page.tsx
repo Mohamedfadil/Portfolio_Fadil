@@ -10,6 +10,8 @@ import {
   DeferredDock,
 } from "@/components/lazy/HomeDeferred";
 
+export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden pb-32">

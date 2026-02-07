@@ -1,6 +1,6 @@
 import Section from "@/components/shared/Section";
-import { SplineScene } from "@/components/ui/splite";
 import { Spotlight } from "@/components/ui/spotlight";
+import ServicesSpline from "@/components/lazy/ServicesSpline";
 import portfolio from "@/data/portfolio.json";
 
 // Services page hero using Splite layout.
@@ -28,7 +28,7 @@ export default function ServicesHero() {
 
           {/* Right content */}
           <div className="flex-1 relative min-h-[420px] md:min-h-screen">
-            <SplineScene
+            <ServicesSpline
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
             />

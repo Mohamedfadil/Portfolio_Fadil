@@ -9,6 +9,8 @@ import {
   DeferredTeam,
 } from "@/components/lazy/ServicesDeferred";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "IntelechoAI - Services We Offer",
   description:

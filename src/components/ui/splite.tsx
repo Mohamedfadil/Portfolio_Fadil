@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, lazy } from "react";
-import { useEffect, useState } from "react";
+import SplineLoader from "@/components/ui/spline-loader";
 const Spline = lazy(() => import("@splinetool/react-spline"));
 
 interface SplineSceneProps {
@@ -10,41 +10,8 @@ interface SplineSceneProps {
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileViewport = window.matchMedia("(max-width: 768px)");
-    const update = () => {
-      setEnabled(!(reducedMotion.matches || mobileViewport.matches));
-    };
-
-    update();
-    reducedMotion.addEventListener("change", update);
-    mobileViewport.addEventListener("change", update);
-    return () => {
-      reducedMotion.removeEventListener("change", update);
-      mobileViewport.removeEventListener("change", update);
-    };
-  }, []);
-
-  if (!enabled) {
-    return (
-      <div
-        className="h-full w-full bg-[radial-gradient(circle_at_30%_30%,rgba(20,184,166,0.25),rgba(0,0,0,0.8)_55%)]"
-        aria-hidden="true"
-      />
-    );
-  }
-
   return (
-    <Suspense
-      fallback={
-        <div className="w-full h-full flex items-center justify-center">
-          <span className="loader"></span>
-        </div>
-      }
-    >
+    <Suspense fallback={<SplineLoader />}>
       <Spline scene={scene} className={className} />
     </Suspense>
   );

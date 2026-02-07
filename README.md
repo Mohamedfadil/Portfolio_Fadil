@@ -19,11 +19,14 @@ A polished Next.js single-page portfolio with a dedicated services page for Inte
 - Deferred below-the-fold heavy sections using `next/dynamic` + `ssr: false` via:
   - `src/components/lazy/HomeDeferred.tsx`
   - `src/components/lazy/ServicesDeferred.tsx`
-- Motion gating for expensive effects (WebGL/canvas/Spline/glow) on:
-  - mobile viewports (`max-width: 768px`)
-  - `prefers-reduced-motion: reduce`
-- Throttled animation frame rates for canvas/WebGL effects to reduce scroll jank.
+- Progressive Spline loading for `/services`:
+  - Delayed mount after first paint (`src/components/lazy/ServicesSpline.tsx`)
+  - Dedicated premium loader (`src/components/ui/spline-loader.tsx`)
+  - Route-level loading UI (`src/app/services/loading.tsx`)
+- Motion gating for expensive effects on `prefers-reduced-motion: reduce`.
+- Throttled animation frame rates + visibility-aware rendering for canvas/WebGL effects to reduce scroll jank.
 - `three` is loaded lazily at runtime inside `src/components/ui/animated-shader-background.tsx` instead of static top-level import.
+- Removed `motion` dependency; glow interaction now uses lightweight native updates.
 - Audited image usage: no raw `<img>` tags are currently used in app UI components.
 
 ## Tech Stack

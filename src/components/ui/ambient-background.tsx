@@ -13,18 +13,30 @@ export default function AmbientBackground() {
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileViewport = window.matchMedia("(max-width: 768px)");
+    let timerId: number | undefined;
 
     const update = () => {
-      setEnabled(!(reducedMotion.matches || mobileViewport.matches));
+      if (reducedMotion.matches) {
+        setEnabled(false);
+        return;
+      }
+
+      if (timerId) {
+        window.clearTimeout(timerId);
+      }
+
+      timerId = window.setTimeout(() => {
+        setEnabled(true);
+      }, 700);
     };
 
     update();
     reducedMotion.addEventListener("change", update);
-    mobileViewport.addEventListener("change", update);
     return () => {
+      if (timerId) {
+        window.clearTimeout(timerId);
+      }
       reducedMotion.removeEventListener("change", update);
-      mobileViewport.removeEventListener("change", update);
     };
   }, []);
 
