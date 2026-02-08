@@ -9,6 +9,7 @@ import {
   DeferredCoreCompetencies,
   DeferredDock,
 } from "@/components/lazy/HomeDeferred";
+import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 
 export const dynamic = "force-static";
 
@@ -26,6 +27,7 @@ export default function Home() {
       <Footer />
 
       <DeferredDock />
+      <ScrollToTopButton />
     </main>
   );
 }

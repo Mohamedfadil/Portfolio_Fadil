@@ -20,7 +20,7 @@ export default function Journey() {
             Building agentic AI systems and data platforms with real-world
             impact.
           </h2>
-          <p className="mt-4 text-xl font-semibold leading-snug tracking-wide text-muted-foreground">
+          <p className="mt-4 text-base font-medium leading-relaxed tracking-normal text-muted-foreground sm:text-lg">
             {resume.summary}
           </p>
         </div>

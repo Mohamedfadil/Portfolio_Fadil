@@ -1,23 +1,7 @@
-import type { CSSProperties } from "react";
-
-type ServicesPageLoaderProps = {
-  text?: string;
-};
-
-export default function ServicesPageLoader({
-  text = "Loading our Services",
-}: ServicesPageLoaderProps) {
+export default function ServicesPageLoader() {
   return (
-    <div className="loader-wrapper" aria-label="Loading our Services" role="status">
-      {Array.from(text).map((char, index) => (
-        <span
-          key={`${char}-${index}`}
-          className="loader-letter"
-          style={{ "--index": index } as CSSProperties}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
+    <div role="status" aria-label="Loading our Services">
+      <div className="border-primary flex h-10 w-10 animate-spin items-center justify-center rounded-full border-4 border-t-transparent" />
     </div>
   );
 }

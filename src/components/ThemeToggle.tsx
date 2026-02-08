@@ -1,77 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import type { HTMLAttributes } from "react";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useCallback, useEffect, useState } from "react";
+import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-const THEME_KEY = "portfolio-theme";
+export default function ThemeToggle({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [checked, setChecked] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-export default function ThemeToggle({ className }: { className?: string }) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  useEffect(() => setMounted(true), []);
+  useEffect(() => setChecked(resolvedTheme === "dark"), [resolvedTheme]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = localStorage.getItem(THEME_KEY) as "light" | "dark" | null;
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const nextTheme = stored ?? (prefersDark ? "dark" : "light");
-    setTheme(nextTheme);
-    document.documentElement.dataset.theme = nextTheme;
-  }, []);
+  const handleCheckedChange = useCallback(
+    (isChecked: boolean) => {
+      setChecked(isChecked);
+      setTheme(isChecked ? "dark" : "light");
+    },
+    [setTheme],
+  );
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    localStorage.setItem(THEME_KEY, nextTheme);
-    document.documentElement.dataset.theme = nextTheme;
-  };
+  if (!mounted) {
+    return null;
+  }
 
   return (
-    <button
-      type="button"
-      aria-label="Toggle color theme"
-      onClick={toggleTheme}
+    <div
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-border/60 bg-surface text-foreground transition hover:-translate-y-0.5 hover:shadow-lg",
+        "relative flex h-9 w-20 items-center justify-center",
         className,
       )}
+      {...props}
     >
-      {theme === "dark" ? (
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className="h-5 w-5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 3a6.5 6.5 0 0 0 0 13 6.5 6.5 0 0 0 0-13Z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 1v2m0 18v2m11-11h-2M3 12H1m17.657-7.657-1.414 1.414M6.757 17.243l-1.414 1.414m0-12.728 1.414 1.414m10.486 10.486 1.414 1.414"
-          />
-        </svg>
-      ) : (
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className="h-5 w-5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"
-          />
-        </svg>
-      )}
-    </button>
+      <Switch
+        checked={checked}
+        onCheckedChange={handleCheckedChange}
+        aria-label="Toggle color theme"
+        className={cn(
+          "peer absolute inset-0 h-full w-full rounded-full border border-border/70 bg-accent/80 transition-colors",
+          "data-[state=checked]:bg-accent/80 data-[state=unchecked]:bg-accent/80",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "[&>span]:z-10 [&>span]:h-7 [&>span]:w-7 [&>span]:rounded-full [&>span]:border [&>span]:border-border/70 [&>span]:bg-background [&>span]:shadow-sm",
+          "data-[state=unchecked]:[&>span]:translate-x-[6px]",
+          "data-[state=checked]:[&>span]:translate-x-[46px]",
+        )}
+      />
+
+      <span className="pointer-events-none absolute inset-y-0 left-3 z-20 flex items-center justify-center">
+        <SunIcon
+          size={16}
+          className={cn(
+            "transition-all duration-200 ease-out",
+            checked ? "text-foreground/55" : "scale-110 text-primary",
+          )}
+        />
+      </span>
+
+      <span className="pointer-events-none absolute inset-y-0 right-3 z-20 flex items-center justify-center">
+        <MoonIcon
+          size={16}
+          className={cn(
+            "transition-all duration-200 ease-out",
+            checked ? "scale-110 text-primary" : "text-foreground/55",
+          )}
+        />
+      </span>
+    </div>
   );
 }

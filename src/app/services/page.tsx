@@ -9,6 +9,7 @@ import {
   DeferredTeam,
 } from "@/components/lazy/ServicesDeferred";
 import ServicesPageLoaderGate from "@/components/lazy/ServicesPageLoaderGate";
+import ScrollToTopButton from "@/components/ui/scroll-to-top-button";
 
 export const dynamic = "force-static";
 
@@ -57,6 +58,7 @@ export default function ServicesPage() {
       </Section>
 
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 }

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import ThemeScript from "@/components/ThemeScript";
+import ThemeProvider from "@/components/theme-provider";
 import AmbientBackground from "@/components/ui/ambient-background";
 import portfolio from "@/data/portfolio.json";
 import resume from "@/data/resume.json";
@@ -72,14 +72,15 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${jetBrains.variable} bg-background text-foreground antialiased`}
       >
-        <ThemeScript />
-        <AmbientBackground />
-        <Navbar />
-        {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <ThemeProvider>
+          <AmbientBackground />
+          <Navbar />
+          {children}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );
