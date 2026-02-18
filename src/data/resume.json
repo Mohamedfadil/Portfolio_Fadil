@@ -51,6 +51,7 @@
     {
       "role": "Senior AI Engineer",
       "company": "Whiteblue Cloud Solutions",
+      "hidden": true,
       "dates": "December 2025 - Present",
       "highlights": [
         "Leading the AI sector for the organization, driving Microsoft Agent Framework adoption and delivery standards.",

@@ -15,7 +15,9 @@ export default function Experience() {
       </div>
 
       <div className="space-y-6">
-        {resume.experience.map((item) => (
+        {resume.experience
+          .filter((item) => !("hidden" in item && item.hidden))
+          .map((item) => (
           <div key={item.role} className="relative pl-6">
             <span className="absolute left-0 top-3 h-2 w-2 rounded-full bg-primary" />
             <div className="rounded-3xl border border-border/60 bg-surface p-6 shadow-sm">
